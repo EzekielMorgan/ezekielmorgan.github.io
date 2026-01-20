@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Pong - By E. Morgan - V 1.1.0</title>
+        <link rel="stylesheet" href="index.css">
+
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <section id="Viewport">
+            <section class="PaddleArea" id="PlayerLeft">
+                <section class="Paddle" id="PLR_L" style="top: 300px;">
+    
+                </section>
+            </section>
+            <section class="PaddleArea" id="PlayerRight">
+                <section class="Paddle" id="PLR_R" style="top: 300px;">
+                    
+                </section>
+            </section>
+            <section class="PlayArea" id="PlayArea">
+                <section class="Ball" id="Ball" style="top: 335px; left: 635px;"></section>
+            </section>
+        </section>
+        <section id="ScoreBoard">
+            <a class="PlayerScore_Title" id="Plr1Score_Title">Left</a>
+            <a class="PlayerScore_Title" id="Plr2Score_Title">Right</a>
+            <a class="PlayerScore_Value" id="Plr1Score_Value">0<br/>Points<br/>Normal:<br/>W & S<br/><br/>Fast:<br/>E & D
+            <a class="PlayerScore_Value" id="Plr2Score_Value">0<br/>Points<br/>Normal:<br/>O & L<br/><br/>Fast:<br/>I & K
+
+            <a class="DevNotice">PADDLE MOVEMENT PRIORITIZES <u><b>FAST</b></u> OVER <b><u>SLOW</u></b><br/><br/>I know the collision is a bit... well... jank.<br/>But its just gonna be like that unless I feel like fixing it.</a>
+        </section>
+        <section id="Border"></section>
+        <section id="Background"></section>
+    </body>
+</html>

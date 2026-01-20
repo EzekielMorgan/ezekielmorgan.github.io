@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title id="PageTitle">CHS Student</title>
+    <meta name="description" content="Yes.">
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="../index.css">
+    <link id="GlobalTheme" rel="stylesheet" href="../../Themes/Global/dark.css">
+    <link id="CHSTheme" rel="stylesheet" href="../../Themes/CHS/dark.css">
+    <link rel="icon" href="../../Images/CHS/Logo.png" type="image/png">
+    <script src="index.js" async defer></script>
+    <script src="../../Scripts/Global.js" async defer></script>
+</head>
+
+<body style="margin: 0px;">
+    <section id="TopBar" class="TopBar">
+        <a style="text-decoration: none;" href="https://ezekielmorgan.github.io/CHS/"><img
+                src="../../Images/CHS/Logo.png" id="TopBarLogo" class="TopBarLogo"></a>
+        <a style="text-decoration: none;" id="TopBarTitle" class="TopBarTitle" href="index.html">
+            CHS
+        </a>
+    </section>
+    <section id="MainViewport" class="CHSViewport">
+        <iframe class="BellSchedule"
+            src="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/3925/Chaffee/3440002/Bell_Schedule_Jr_Sr_High_School_2023_2024.pdf"></iframe>
+        <span id="BellSchedule_TimeContainer">
+            <a href="https://time.is/Sikeston" id="time_is_link" rel="nofollow" style="font-size:36px; vertical-align: top; top:10px">Time in
+                Sikeston:</a>
+            <span id="Sikeston_z123" style="font-size:36px; vertical-align: top; top:10px"></span>
+            <script src="//widget.time.is/en.js"></script>
+            <script>
+                time_is_widget.init({ Sikeston_z123: { template: "TIME<br>DATE", time_format: "12hours:minutes:secondsAMPM", date_format: "dayname, monthname dnum, year" } });
+            </script>
+        </span>
+    </section>
+    <section id="footer">
+        ${Version}
+    </section>
+</body>
+
+</html>

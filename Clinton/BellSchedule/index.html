@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>GAMBLING</title>
+
+  <!-- Base page stylesheet -->
+  <link rel="stylesheet" href="./index.css">
+
+  <!-- Metadata -->
+  <meta id="footerData" data-version="1" data-madeby="1" data-wip="1">
+
+  <!-- Dynamic loader -->
+  <script>
+    (function () {
+      const head = document.head;
+      const baseUrl = `${location.protocol}//${location.host}`;
+
+      /* ---------- Stylesheets ---------- */
+      const siteStructureTheme = document.createElement("link");
+      siteStructureTheme.rel = "stylesheet";
+      siteStructureTheme.href = `${baseUrl}/index.css`;
+
+      const globalTheme = document.createElement("link");
+      globalTheme.id = "GlobalTheme";
+      globalTheme.rel = "stylesheet";
+      globalTheme.href = `${baseUrl}/Themes/Global/dark.css`;
+
+      head.append(siteStructureTheme, globalTheme);
+
+      /* ---------- Scripts ---------- */
+      const exceptionCatcher = document.createElement("script");
+      exceptionCatcher.src = `${baseUrl}/Scripts/devMenu.js`;
+      exceptionCatcher.async = true;
+
+      const globalScript = document.createElement("script");
+      globalScript.src = `${baseUrl}/Scripts/Global.js`;
+      globalScript.defer = true;
+      globalScript.id = "Global";
+      globalScript.dataset.globals = JSON.stringify(["footer", "sonar"]);
+
+      head.append(exceptionCatcher, globalScript);
+    })();
+  </script>
+
+  <!-- Page script -->
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+  <input type="button" id="NewMugShotButton" value="LET'S GO GAMBLING!!!"><br />
+  <br />
+  Okay, so gambling is going to be broken, because I am working on redoing this lol.<br/>
+  Actually, I have decided to just move gambling to its own page, so this wont be broken while I work on it.
+
+  <section id="AutoGambleSettings">
+    <section id="AGS_Auto">
+      Auto Gamble: <input type="checkbox" id="MugshotAutoChangeCheckbox">
+    </section>
+    <section id="AGS_Stop">
+      Stop when: <input type="text" id="stopWhen">
+    </section>
+  </section>
+
+  <section id="possibleImagesAdornee">
+    <a id="possibleImages"></a>
+  </section>
+  <img class="mugShot" id="mugshot" src="../../Images/Mugshots/GAMBLING.jpeg">
+  <script src="./Mugshots.js">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+div#DM-Cons-LogContainer {
+    width: 100%;
+    height: 300px;
+    position:relative;
+    left: 0;
+    top: 0;
+    border: 2px solid #3b3b3b;
+    border-radius: 10px;
+    background-color: #4b4b4b;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+
+    color: white;
+
+    box-sizing: border-box;
+
+    flex-direction: row-reverse;
+}
+
+section.DM-Cons_Log {
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #9b9b9b;
+    border-bottom: 1px solid #9b9b9b;
+    background-color: #4b4b4b;
+
+    overflow-wrap: anywhere;
+
+    font-size: 12px;
+}
+section.DM-Cons_Error {
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #9b9b9b;
+    border-bottom: 1px solid #9b9b9b;
+    background-color: #4b4b4b;
+    color: red;
+
+    overflow-wrap: anywhere;
+
+    font-size: 12px;
+}

@@ -1,0 +1,66 @@
+.TopBar {
+    min-width: 500px;
+    width: 100%;
+    height: 75px;
+    margin-top: 0px;
+    margin-left: 0px;
+    position: static;
+    z-index: 100000;
+}
+
+.TopBarLogo_CONTAINER {
+    height: 75px;
+}
+
+.TopBarLogo {
+    height: 90%;
+    width: auto;
+    position: relative;
+    top: 5%;
+    left: 10px;
+    z-index: inherit;
+    border-width: 0px;
+}
+
+.TopBarTitle {
+    height: 75px;
+    width: auto;
+    position: static;
+    top: 0px;
+    margin-top: 0px;
+    left: 85px;
+    z-index: inherit;
+    font-size: 70px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    object-fit: contain;
+    display: inline;
+}
+
+a {
+    font-size: 30px;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ImFailingToMakeScrollWorkSoIUseThisHackyMethod {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    display: block;
+}
+
+.BellSchedule {
+    /*width: 400px;*/
+    height: 500px;
+    aspect-ratio: 1.3;
+}
+
+.TimeIs {
+    width: 350px;
+    height: 200px;
+}
+
+.BellSchedule_TimeContainer {
+
+}

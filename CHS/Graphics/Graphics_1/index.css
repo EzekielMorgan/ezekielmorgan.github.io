@@ -1,0 +1,33 @@
+#GraphicsSelectedWorkDisplay {
+    display: none;
+}
+
+.Graphics_Page_Seperator {
+    position: relative;
+    width: 95%;
+    height: 5px;
+    left: 2.5%;
+    display: block;
+}
+
+.Graphics_Work_Preview {
+    width: fit-content;
+    left: 2.5%;
+    height: fit-content;
+    display: block;
+    position: relative;
+    border-radius: 10px;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.Graphics_WRKPRE_Image {
+    border-radius: 10px;
+    width: 100%;
+    height: fit-content;
+}
+a.Graphics_WRKPRE_Text {
+    vertical-align: top;
+    width: auto;
+    height: auto;
+}

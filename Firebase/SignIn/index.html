@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Firebase - Sign In</title>
+    <link id="GlobalTheme" rel="stylesheet" href="../../Themes/Global/dark.css">
+    <link id="PageStructure" rel="stylesheet" href="./index.css">
+    <link id="SiteStructureTheme" rel="stylesheet" href="../../index.css">
+
+    <div id="Scripts">
+        <!--<script type="module" src="../../Scripts/Global.js"></script>-->
+        <script type="module" src="./index.js"></script>
+    </div>
+</head>
+
+<body>
+    <div id="SignInBox">
+        <h1>Sign In</h1>
+        <input type="email" autocomplete="email" class="firebaseSignin_Input" id="emailInput" placeholder="user@email.com" />
+        <input type="password" autocomplete="current-password" class="firebaseSignin_Input" id="passwordInput" placeholder="password" />
+        <div id="SignIn_Buttons">
+            <button class="signInButton" id="signInButton">Sign In</button>
+            <button class="signInButton" id="signUpButton">Sign Up</button>
+        </div>
+        <div id="errorMessage"></div>
+    </div>
+
+    <script src="../../Scripts/devMenu.js"></script>
+</body>
+
+</html>

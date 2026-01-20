@@ -1,0 +1,75 @@
+div#SignInBox {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    width: 400px;
+    height: 300px;
+
+    background-color: #4d4d4d;
+
+    border: 5px solid rgb(103, 103, 103);
+    border-radius: 10px;
+}
+
+section#signin {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 250px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    border: 2px solid rgb(103, 103, 103);
+    border-radius: 10px;
+    text-align: center;
+    font: 15px;
+
+    background-color: #4d4d4d;
+}
+
+.signInButton {
+    margin-top: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.signInButton:hover:enabled {
+    background-color: rgb(153, 153, 153);
+    cursor: pointer;
+}
+
+.signInButton:active:enabled {
+    background-color: rgb(103, 103, 103);
+}
+
+.firebaseSignin_Input {
+    width: 90%;
+
+    margin-bottom: 5px;
+
+    text-align: center;
+
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+div#errorMessage {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    height: 20px;
+    width: 90%;
+    display: flex;
+
+    flex-direction: column-reverse;
+    /* Reverses the vertical order of content */
+
+
+    align-content: center;
+}

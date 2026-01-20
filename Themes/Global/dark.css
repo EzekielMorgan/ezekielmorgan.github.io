@@ -1,0 +1,19 @@
+body {
+    background-color: #252525;
+    color: white;
+}
+
+header {
+    color: white;
+}
+
+#footer {
+    background-color: #505050;
+    color: #909090;
+
+    border-top-color: #101010;
+}
+.ImFailingToMakeScrollWorkSoIUseThisHackyMethod {
+    background-color: #252525;
+    color: #252525;
+}

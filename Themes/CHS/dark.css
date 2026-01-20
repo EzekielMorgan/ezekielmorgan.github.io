@@ -1,0 +1,32 @@
+.TopBar {
+    background-color: black;
+    border-bottom: 10px solid red;
+}
+
+.MainViewport {
+    background-color: rgb(80, 80, 80);
+}
+
+.TopBarTitle {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+/*
+Graphics
+*/
+
+.Graphics_Page_Seperator {
+    background-color: white;
+}
+
+.Graphics_Work_Preview {
+    border-color: red;
+}
+
+/*
+Misc
+*/

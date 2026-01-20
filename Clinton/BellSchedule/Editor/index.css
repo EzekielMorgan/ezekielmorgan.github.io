@@ -1,0 +1,593 @@
+/* ----- Base ----- */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+/* ----- Page Layout ----- */
+
+.PageHeader {
+    background-color: #3b3b3b;
+    padding: 10px;
+    border-bottom: 3px solid #6b6b6b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.PageContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* ----- Container Base ----- */
+
+section.Container {
+    padding: 5px;
+    border: 3px solid #6b6b6b;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+/* ----- Config Editor Grid ----- */
+
+#ConfigEditor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "header header"
+        "CurrentSchedule CurrentSchedule"
+        "ShortDays Overrides";
+    gap: 10px;
+}
+
+#ConfigEditor>header {
+    grid-area: header;
+}
+
+/* Grid areas */
+.CurrentSchedule {
+    grid-area: CurrentSchedule;
+}
+
+.ShortDays {
+    grid-area: ShortDays;
+}
+
+.Overrides {
+    grid-area: Overrides;
+}
+
+/* ----- Headers ----- */
+
+.ContainerHeader {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* ----- Config Items ----- */
+
+/* ----- Fieldset Panels ----- */
+
+fieldset.ConfigFieldset {
+    border: 2px solid #a0a0a0;
+    border-radius: 6px;
+    padding: 0px 10px 10px;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+fieldset.ConfigFieldset legend {
+    display: table;
+    margin: 0 auto;
+
+    padding: 0 8px;
+    font-size: 0.9em;
+    color: #c0c0c0;
+}
+
+
+.configDesc {
+    margin: 5px 0;
+}
+
+.disclaimer {
+    font-size: 0.8em;
+    color: #c0c0c0;
+}
+
+/* ----- Short Days ----- */
+
+.SDT-Day,
+.SDT-Day-O {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+}
+
+.SDT-Day#Monday {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.SDT-Day#Friday {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.SDT-Day {
+    background: #6b6b6b;
+}
+
+.SDT-Day-O {
+    background: #8b8b8b;
+}
+
+.SDT-Day:hover,
+.SDT-Day-O:hover {
+    background: #9b9b9b;
+}
+
+.SDT-Label {
+    text-align: left;
+}
+
+/* ----- Custom Checkbox Base ----- */
+
+.SDT-Day input[type="checkbox"],
+.SDT-Day-O input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #4b4b4b;
+    border-radius: 4px;
+
+    background-color: #2b2b2b;
+    cursor: pointer;
+
+    display: grid;
+    place-content: center;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+
+.SDT-Day input[type="checkbox"]::before,
+.SDT-Day-O input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: transform 0.1s ease-in-out;
+
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+.SDT-Day input[type="checkbox"]:checked::before,
+.SDT-Day-O input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.SDT-Day:hover input[type="checkbox"],
+.SDT-Day-O:hover input[type="checkbox"] {
+    border-color: #c0c0c0;
+}
+
+.SDT-Day input[type="checkbox"]:checked,
+.SDT-Day-O input[type="checkbox"]:checked {
+    background-color: #4b4b4b;
+    border-color: #c0c0c0;
+}
+
+.SDT-Day input[type="checkbox"]:focus-visible,
+.SDT-Day-O input[type="checkbox"]:focus-visible {
+    outline: 2px solid #9b9b9b;
+    outline-offset: 2px;
+}
+
+/* ----- General Select ----- */
+
+select {
+    width: 90%;
+    margin: 5px 0 10px 0;
+    border: 2px solid #6b6b6b;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #4b4b4b;
+    color: white;
+
+    transition: background-color 0.15s ease;
+}
+
+select:hover,
+select:focus {
+    background-color: #8b8b8b;
+}
+
+select:disabled {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+}
+
+select option {
+    background-color: #4b4b4b;
+    color: white;
+}
+
+select option:nth-of-type(even) {
+    background-color: #5b5b5b;
+}
+
+/* ----- General Button ----- */
+
+button {
+    border: 2px solid #6b6b6b;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease;
+}
+
+button:disabled {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+    border-color: #4b4b4b;
+    cursor: not-allowed;
+}
+
+button:enabled:hover {
+    background-color: #6b6b6b;
+}
+
+button:enabled:active {
+    background-color: #2b2b2b;
+}
+
+/* ----- General Input - Text ----- */
+input[type="text"] {
+    width: 90%;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+    border: 2px solid #6b6b6b;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #4b4b4b;
+    color: white;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+input[type="text"]:enabled:hover,
+input[type="text"]:enabled:focus {
+    background-color: #8b8b8b;
+    border-color: #c0c0c0;
+}
+
+input[type="text"]:disabled {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+    border-color: #4b4b4b;
+}
+
+/* ----- Schedule Entries ----- */
+
+h1.SE-SectionHeader {
+    margin: 0;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+div.SE-BellTimesList {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
+
+    border: 2px solid #6b6b6b;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+div.SE-Entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid #6b6b6b;
+    border-radius: 15px;
+}
+
+span.SE-Entry-Header {
+    width: 100%;
+    height: 30px;
+    margin: 0;
+
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1em;
+
+    display: flex;
+    justify-content: space-between;
+
+    transition: background-color 0.15s ease;
+}
+
+span.SE-Entry-Header:hover {
+    background-color: #6b6b6b;
+    cursor: pointer;
+}
+
+input.SE-Entry-Label {
+    width: calc(100% - 40px);
+    height: 13px;
+    margin: 3px 0 3px 0;
+
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+
+button.SE-Entry-Collapse {
+    width: 25px;
+    height: 25px;
+    margin: auto 0 auto 0;
+
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+
+    rotate: 270deg;
+}
+
+/* ----- Return Button ----- */
+
+button#returnButton {
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+
+    position: absolute;
+    left: 10px;
+
+    transition: background-color 0.15s ease;
+}
+
+button#returnButton:hover {
+    background-color: #6b6b6b;
+}
+
+button#returnButton:active {
+    background-color: #2b2b2b;
+}
+
+/* ----- Schedule Editor ----- */
+
+
+.ScheduleSelector {
+    border: 2px solid #6b6b6b;
+    border-radius: 6px;
+    padding: 0px 10px 10px;
+    margin-top: 10px;
+
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ScheduleSelector legend {
+    padding: 0 8px;
+    font-size: 0.9em;
+    color: #c0c0c0;
+
+    display: table;
+    margin: 0 auto;
+}
+
+#ScheduleEditor {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 10px;
+
+    height: fit-content;
+}
+
+.ScheduleEditor {
+    border: 2px solid #6b6b6b;
+    border-radius: 6px;
+    padding: 0px 10px 10px;
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ScheduleEditor legend {
+    padding: 0 8px;
+    font-size: 0.9em;
+    color: #c0c0c0;
+
+    display: table;
+    margin: 0 auto;
+}
+
+select#ScheduleSelect {
+    width: 95%;
+    height: 25px;
+    margin: 10px 0;
+}
+
+.ScheduleButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 3px;
+}
+
+button#CreateScheduleButton,
+button#DeleteScheduleButton {
+    margin: 0px;
+    border: 2px solid #6b6b6b;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+    color: white;
+    cursor: pointer;
+
+    font-size: 1em;
+
+    transition: background-color 0.15s ease;
+}
+
+button#CreateScheduleButton:disabled,
+button#DeleteScheduleButton:disabled {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+    border-color: #4b4b4b;
+    cursor: not-allowed;
+}
+
+button#CreateScheduleButton:enabled:hover,
+button#DeleteScheduleButton:enabled:hover {
+    background-color: #6b6b6b;
+}
+
+button#CreateScheduleButton:enabled:active,
+button#DeleteScheduleButton:enabled:active {
+    background-color: #2b2b2b;
+}
+
+
+div.shortDayToggle {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+        "Normal Shortday";
+}
+
+button#setNormalDay {
+    grid-area: Normal;
+
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+}
+
+button.Editor-SDT-Selected {
+    background-color: #5b5b5b;
+    color: white;
+}
+
+button.Editor-SDT-Selected:hover {
+    background-color: #7b7b7b;
+}
+
+button.Editor-SDT-Selected:active {
+    background-color: #3b3b3b;
+}
+
+button.Editor-SDT-NotSelected {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+}
+
+button.Editor-SDT-NotSelected:hover {
+    background-color: #4b4b4b;
+    color: white;
+}
+
+button.Editor-SDT-NotSelected:active {
+    background-color: #2b2b2b;
+    color: #7b7b7b;
+}
+
+button#setShortDay {
+    grid-area: Shortday;
+
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+}
+
+Button.Editor-SDT-Button {
+    border: 2px solid #6b6b6b;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+table#BellTimesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table#BellTimesTable th,
+table#BellTimesTable td {
+    border: 1px solid #7b7b7b;
+    padding: 8px;
+    text-align: center;
+}
+
+table#BellTimesTable td.delPer {
+    border: none;
+}
+
+button.periodDelete {
+    background-color: #252525;
+    fill-opacity: 0;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    transition: background-color 0.15s ease;
+}
+
+button.periodDelete:hover {
+    background-color: #9b0000;
+}
+
+button.periodDelete:active {
+    background-color: #5b0000;
+}

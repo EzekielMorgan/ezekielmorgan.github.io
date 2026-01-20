@@ -1,0 +1,22 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+    --footer-height: 0px;
+}
+
+#footer {
+    border-top-width: 5px;
+    bottom: 0px;
+    left: 0px;
+    position: fixed;
+    width: 100%;
+    border-top-style: solid;
+    height: auto;
+    min-height: 25px;
+}
+
+button {
+    transition: background-color 0.2s;
+}

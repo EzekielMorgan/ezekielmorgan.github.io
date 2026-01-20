@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Bell Schedule</title>
+
+  <!-- Base page stylesheet -->
+  <link rel="stylesheet" href="./index.css">
+
+  <!-- Metadata -->
+  <meta id="footerData" data-version="1" data-madeby="1" data-wip="1">
+
+  <!-- Dynamic loader -->
+  <script>
+    (function () {
+      const head = document.head;
+      const baseUrl = `${location.protocol}//${location.host}`;
+
+      /* ---------- Stylesheets ---------- */
+      const siteStructureTheme = document.createElement("link");
+      siteStructureTheme.rel = "stylesheet";
+      siteStructureTheme.href = `${baseUrl}/index.css`;
+
+      const globalTheme = document.createElement("link");
+      globalTheme.id = "GlobalTheme";
+      globalTheme.rel = "stylesheet";
+      globalTheme.href = `${baseUrl}/Themes/Global/dark.css`;
+
+      head.append(siteStructureTheme, globalTheme);
+
+      /* ---------- Scripts ---------- */
+      const exceptionCatcher = document.createElement("script");
+      exceptionCatcher.src = `${baseUrl}/Scripts/devMenu.js`;
+      exceptionCatcher.async = true;
+
+      const globalScript = document.createElement("script");
+      globalScript.src = `${baseUrl}/Scripts/Global.js`;
+      globalScript.defer = true;
+      globalScript.id = "Global";
+      globalScript.dataset.globals = JSON.stringify(["footer", "sonar"]);
+
+      head.append(exceptionCatcher, globalScript);
+    })();
+  </script>
+
+  <!-- Page script -->
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+  <section class="devMenu" id="devMenu" style="transform: translateX(300px);" hidden>
+    <button id="DM-visibilityButton">&lt</button>
+    <section id="DM-Main">
+      <h1>Dev Menu</h1>
+      <select id="DM-SelectPage">
+        <option class="DM-selectOpt" value="pl1">Placeholder 1</option>
+        <option class="DM-selectOpt" value="pl2">Placeholder 2</option>
+        <option class="DM-selectOpt" value="pl3">Placeholder 3</option>
+        <option class="DM-selectOpt" value="pl4">Placeholder 4</option>
+      </select>
+      <section id="DM-Adorne">
+
+      </section>
+    </section>
+  </section>
+</body>
+
+</html>
