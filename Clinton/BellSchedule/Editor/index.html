@@ -3,40 +3,56 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Bell Schedule</title>
 
-  <!-- Base page stylesheet -->
+  <!-- Page-local stylesheet (Editor-specific) -->
   <link rel="stylesheet" href="./index.css">
 
   <!-- Metadata -->
   <meta id="footerData" data-version="1" data-madeby="1" data-wip="1">
 
-  <!-- Dynamic loader -->
+  <!-- Dynamic loader (global assets live at domain root) -->
   <script>
     (function () {
       const head = document.head;
-      const baseUrl = `${location.protocol}//${location.host}`;
 
-      /* ---------- Stylesheets ---------- */
-      const siteStructureTheme = document.createElement("link");
-      siteStructureTheme.rel = "stylesheet";
-      siteStructureTheme.href = `${baseUrl}/index.css`;
+      // Domain root (e.g., http://127.0.0.1:5500/)
+      const rootUrl = `${window.location.origin}/`;
 
+      /* ---------- Stylesheets (GLOBAL) ---------- */
+
+      // Site-wide CSS at /index.css
+      const siteCss = document.createElement("link");
+      siteCss.id = "SiteCss";
+      siteCss.rel = "stylesheet";
+      siteCss.href = `${rootUrl}index.css`;
+
+      // Global theme CSS at /Themes/Global/dark.css
       const globalTheme = document.createElement("link");
       globalTheme.id = "GlobalTheme";
       globalTheme.rel = "stylesheet";
-      globalTheme.href = `${baseUrl}/Themes/Global/dark.css`;
+      globalTheme.href = `${rootUrl}Themes/Global/dark.css`;
 
-      head.append(siteStructureTheme, globalTheme);
+      // Insert global CSS before page-local CSS so page-local rules can override it.
+      // (Page-local ./index.css is already in the DOM above this script.)
+      const firstStylesheet = head.querySelector('link[rel="stylesheet"]');
+      if (firstStylesheet) {
+        head.insertBefore(siteCss, firstStylesheet);
+        head.insertBefore(globalTheme, firstStylesheet);
+      } else {
+        head.append(siteCss, globalTheme);
+      }
 
-      /* ---------- Scripts ---------- */
+      /* ---------- Scripts (GLOBAL) ---------- */
+
       const exceptionCatcher = document.createElement("script");
-      exceptionCatcher.src = `${baseUrl}/Scripts/devMenu.js`;
+      exceptionCatcher.src = `${rootUrl}Scripts/devMenu.js`;
       exceptionCatcher.async = true;
 
       const globalScript = document.createElement("script");
-      globalScript.src = `${baseUrl}/Scripts/Global.js`;
+      globalScript.src = `${rootUrl}Scripts/Global.js`;
       globalScript.defer = true;
       globalScript.id = "Global";
       globalScript.dataset.globals = JSON.stringify(["footer", "sonar"]);
@@ -45,7 +61,7 @@
     })();
   </script>
 
-  <!-- Page script -->
+  <!-- Page-local script -->
   <script type="module" src="./index.js"></script>
 </head>
 
@@ -53,14 +69,12 @@
 
   <header class="PageHeader">
     <button id="returnButton">&lang; Back to Bell Schedule</button>
-    <h1 class="PageTitle">
-      Bell Schedule Editor - Clinton High School
-    </h1>
+    <h1 class="PageTitle">Bell Schedule Editor - Clinton High School</h1>
   </header>
 
   <div class="PageContent">
 
-    <!-- ----- Configuration ----- -->
+    <!-- CONFIG EDITOR -->
     <section class="Container" id="ConfigEditor">
       <header>
         <h1 class="ContainerHeader">Configuration</h1>
@@ -68,14 +82,10 @@
 
       <fieldset class="ConfigFieldset CurrentSchedule">
         <legend>Current Schedule</legend>
-
         <div class="configDesc">
-          The current Bell Schedule in use.<br />
-          <a class="disclaimer">
-            (Does not handle short day schedules, those are automatically handled)
-          </a>
+          The current Bell Schedule in use.<br>
+          <span class="disclaimer">(Does not handle short day schedules)</span>
         </div>
-
         <select id="ScheduleSelector">
           <option value="" disabled selected>Select a schedule</option>
         </select>
@@ -83,55 +93,29 @@
 
       <fieldset class="ConfigFieldset ShortDays">
         <legend>Short Days</legend>
+        <div class="configDesc">The days to automatically switch.</div>
 
-        <div class="configDesc">
-          The days to automatically switch to a short day schedule.
-        </div>
-
-        <label class="SDT-Day" id="Monday">
-          <span class="SDT-Label">Monday</span>
-          <input type="checkbox">
-        </label>
-
-        <label class="SDT-Day-O">
-          <span class="SDT-Label">Tuesday</span>
-          <input type="checkbox">
-        </label>
-
-        <label class="SDT-Day">
-          <span class="SDT-Label">Wednesday</span>
-          <input type="checkbox">
-        </label>
-
-        <label class="SDT-Day-O">
-          <span class="SDT-Label">Thursday</span>
-          <input type="checkbox">
-        </label>
-
-        <label class="SDT-Day" id="Friday">
-          <span class="SDT-Label">Friday</span>
-          <input type="checkbox">
-        </label>
+        <label class="SDT-Day" id="Monday"><span>Monday</span><input type="checkbox"></label>
+        <label class="SDT-Day-O" id="Tuesday"><span>Tuesday</span><input type="checkbox"></label>
+        <label class="SDT-Day" id="Wednesday"><span>Wednesday</span><input type="checkbox"></label>
+        <label class="SDT-Day-O" id="Thursday"><span>Thursday</span><input type="checkbox"></label>
+        <label class="SDT-Day" id="Friday"><span>Friday</span><input type="checkbox"></label>
       </fieldset>
-
 
       <fieldset class="ConfigFieldset Overrides">
         <legend>Overrides</legend>
-
-        <div class="configDesc">
-          Override default logic.
-        </div>
+        <div class="configDesc">Override default logic.</div>
       </fieldset>
     </section>
 
-    <!-- ----- Schedule Editor ----- -->
+    <!-- SCHEDULE EDITOR -->
     <section class="Container" id="ScheduleEditor">
       <header>
         <h1 class="ContainerHeader">Schedule Editor</h1>
       </header>
+
       <fieldset class="ScheduleSelector">
         <legend>Select Schedule</legend>
-
         <select id="ScheduleSelect">
           <option value="" disabled selected>Select a schedule</option>
         </select>
@@ -140,6 +124,7 @@
           <button id="DeleteScheduleButton" disabled>Delete Schedule</button>
         </div>
       </fieldset>
+
       <fieldset class="ScheduleEditor">
         <legend>Schedule Editor</legend>
 
@@ -149,37 +134,53 @@
               Schedule Name:
               <input type="text" id="ScheduleNameInput" disabled>
             </label>
+
             <div class="shortDayToggle">
               <button class="Editor-SDT-Button Editor-SDT-Selected" id="setNormalDay">Normal</button>
               <button class="Editor-SDT-Button Editor-SDT-NotSelected" id="setShortDay">Short Day</button>
             </div>
           </div>
+
           <div class="SE-EditorSection">
             <div class="SE-BellTimesList">
               <h1 class="SE-SectionHeader">Bell Times</h1>
-              <!-- Bell times will be dynamically added here, done manually for now to make structure -->
+
               <div class="SE-Entry">
                 <span class="SE-Entry-Header">
-                  <input type="text" class="SE-Entry-Label" placeholder="Period Name" disabled>
-                  <button class="SE-Entry-Collapse">&lt;</button>
+                  <input type="text" class="SE-Entry-Label" placeholder="Period Name">
+                  <button type="button" class="SE-Entry-Collapse" aria-expanded="false"
+                    aria-label="Expand or collapse this bell time">&lt;</button>
                 </span>
+
+                <div class="SE-Entry-Content">
+                  <div class="SE-Entry-Section Start">
+                    <span>Start</span>
+                    <input type="time">
+                  </div>
+                  <div class="SE-Entry-Section End">
+                    <span>End</span>
+                    <input type="time">
+                  </div>
+                  <button type="button" class="SE-Entry-DeleteButton">Delete</button>
+                </div>
               </div>
+
+              <button id="AddBellTimeButton">Add Bell Time</button>
             </div>
-            <button id="AddBellTimeButton" disabled>Add Bell Time</button>
           </div>
         </div>
+      </fieldset>
     </section>
 
-    <!-- ----- Calendar Editor ----- -->
+    <!-- CALENDAR -->
     <section class="Container" id="CalendarEditor">
       <header>
         <h1 class="ContainerHeader">Calendar Editor</h1>
       </header>
-      <a>This will be added in a later update.</a>
+      <p>This will be added in a later update.</p>
     </section>
 
   </div>
-
 </body>
 
 </html>

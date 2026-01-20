@@ -36,6 +36,7 @@ section.Container {
     border-radius: 10px;
 
     text-align: center;
+    height: min-content;
 }
 
 /* ----- Config Editor Grid ----- */
@@ -76,14 +77,12 @@ section.Container {
     margin-bottom: 5px;
 }
 
-/* ----- Config Items ----- */
-
 /* ----- Fieldset Panels ----- */
 
 fieldset.ConfigFieldset {
     border: 2px solid #a0a0a0;
     border-radius: 6px;
-    padding: 0px 10px 10px;
+    padding: 0 10px 10px;
     margin: 0;
 
     display: flex;
@@ -100,7 +99,6 @@ fieldset.ConfigFieldset legend {
     font-size: 0.9em;
     color: #c0c0c0;
 }
-
 
 .configDesc {
     margin: 5px 0;
@@ -148,10 +146,6 @@ fieldset.ConfigFieldset legend {
     background: #9b9b9b;
 }
 
-.SDT-Label {
-    text-align: left;
-}
-
 /* ----- Custom Checkbox Base ----- */
 
 .SDT-Day input[type="checkbox"],
@@ -173,7 +167,6 @@ fieldset.ConfigFieldset legend {
 
     transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-
 
 .SDT-Day input[type="checkbox"]::before,
 .SDT-Day-O input[type="checkbox"]::before {
@@ -209,7 +202,7 @@ fieldset.ConfigFieldset legend {
     outline-offset: 2px;
 }
 
-/* ----- General Select ----- */
+/* ----- General Controls ----- */
 
 select {
     width: 90%;
@@ -242,7 +235,7 @@ select option:nth-of-type(even) {
     background-color: #5b5b5b;
 }
 
-/* ----- General Button ----- */
+/* ----- Buttons (single source of truth) ----- */
 
 button {
     border: 2px solid #6b6b6b;
@@ -270,7 +263,8 @@ button:enabled:active {
     background-color: #2b2b2b;
 }
 
-/* ----- General Input - Text ----- */
+/* ----- Inputs ----- */
+
 input[type="text"] {
     width: 90%;
     padding: 5px;
@@ -294,6 +288,16 @@ input[type="text"]:disabled {
     background-color: #2b2b2b;
     color: #7b7b7b;
     border-color: #4b4b4b;
+}
+
+input[type="time"] {
+    padding: 5px;
+    border: 2px solid #6b6b6b;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+    color: white;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 /* ----- Schedule Entries ----- */
@@ -322,6 +326,11 @@ div.SE-Entry {
     box-sizing: border-box;
     border: 2px solid #6b6b6b;
     border-radius: 15px;
+
+    margin: 5px 0;
+
+    flex-direction: column;
+    overflow: hidden;
 }
 
 span.SE-Entry-Header {
@@ -329,12 +338,9 @@ span.SE-Entry-Header {
     height: 30px;
     margin: 0;
 
-    padding: 0;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0 5px;
 
     border: none;
-    border-radius: 10px;
     font-weight: bold;
     font-size: 1em;
 
@@ -342,17 +348,23 @@ span.SE-Entry-Header {
     justify-content: space-between;
 
     transition: background-color 0.15s ease;
+    user-select: none;
+
+    outline: none;
+}
+
+span.SE-Entry-Header:focus-visible {
+    outline: 2px solid #9b9b9b;
 }
 
 span.SE-Entry-Header:hover {
     background-color: #6b6b6b;
-    cursor: pointer;
 }
 
 input.SE-Entry-Label {
     width: calc(100% - 40px);
     height: 13px;
-    margin: 3px 0 3px 0;
+    margin: 3px 0;
 
     border: none;
     border-radius: 10px;
@@ -363,49 +375,123 @@ input.SE-Entry-Label {
 button.SE-Entry-Collapse {
     width: 25px;
     height: 25px;
-    margin: auto 0 auto 0;
+    margin: auto 0;
 
     background: none;
     border: none;
     color: white;
     font-size: 1em;
 
-    rotate: 270deg;
+    transform: rotate(270deg);
+    transition: transform 0.25s ease;
 }
 
-/* ----- Return Button ----- */
+button.SE-Entry-Collapse:hover,
+button.SE-Entry-Collapse:active {
+    background: none;
+}
+
+.SE-Entry-Content {
+    width: 70%;
+    max-height: 0;
+    opacity: 0;
+
+    align-content: center;
+
+    transition:
+        max-height 0.25s ease,
+        opacity 0.2s ease;
+}
+
+.SE-Entry.expanded .SE-Entry-Content {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.SE-Entry.expanded .SE-Entry-Collapse {
+    transform: rotate(90deg);
+}
+
+.SE-Entry-Section {
+    width: 100%;
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SE-Entry-Section.Start {
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    background-color: #5b5b5b;
+}
+
+.SE-Entry-Section.End {
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    background-color: #3b3b3b;
+}
+
+.SE-Entry-Section span {
+    text-align: left;
+    margin: auto 0;
+}
+
+/* Delete button (base) */
+button.SE-Entry-DeleteButton {
+    border: none;
+    padding: 5px 10px;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+    transition: background-color 0.15s ease;
+}
+
+/* Delete button (normal state colors) */
+button.SE-Entry-DeleteButton {
+    background-color: #4b4b4b;
+}
+
+button.SE-Entry-DeleteButton:hover {
+    background-color: #9b0000;
+}
+
+button.SE-Entry-DeleteButton:active {
+    background-color: #5b0000;
+}
+
+/* Delete button (confirm state colors only override colors) */
+button.SE-Entry-DeleteButton.Confirm {
+    background-color: #9e0000;
+}
+
+button.SE-Entry-DeleteButton.Confirm:hover {
+    background-color: #f70000;
+}
+
+button.SE-Entry-DeleteButton.Confirm:active {
+    background-color: #5e0000;
+}
+
+/* ----- Return Button (only layout specifics; visuals come from global button) ----- */
 
 button#returnButton {
     padding: 8px 16px;
     margin: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4b4b4b;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
 
     position: absolute;
     left: 10px;
 
-    transition: background-color 0.15s ease;
-}
-
-button#returnButton:hover {
-    background-color: #6b6b6b;
-}
-
-button#returnButton:active {
-    background-color: #2b2b2b;
+    border: none;
+    /* Keep it looking like your original */
 }
 
 /* ----- Schedule Editor ----- */
 
-
 .ScheduleSelector {
     border: 2px solid #6b6b6b;
     border-radius: 6px;
-    padding: 0px 10px 10px;
+    padding: 0 10px 10px;
     margin-top: 10px;
 
     height: fit-content;
@@ -435,7 +521,7 @@ button#returnButton:active {
 .ScheduleEditor {
     border: 2px solid #6b6b6b;
     border-radius: 6px;
-    padding: 0px 10px 10px;
+    padding: 0 10px 10px;
     margin-top: 10px;
 
     display: flex;
@@ -464,51 +550,35 @@ select#ScheduleSelect {
     margin-top: 3px;
 }
 
-button#CreateScheduleButton,
-button#DeleteScheduleButton {
-    margin: 0px;
-    border: 2px solid #6b6b6b;
-    border-radius: 5px;
-    background-color: #4b4b4b;
-    color: white;
-    cursor: pointer;
-
-    font-size: 1em;
-
-    transition: background-color 0.15s ease;
+/* Instead of duplicating button visuals per-ID */
+.ScheduleButtons button {
+    margin: 0;
 }
-
-button#CreateScheduleButton:disabled,
-button#DeleteScheduleButton:disabled {
-    background-color: #2b2b2b;
-    color: #7b7b7b;
-    border-color: #4b4b4b;
-    cursor: not-allowed;
-}
-
-button#CreateScheduleButton:enabled:hover,
-button#DeleteScheduleButton:enabled:hover {
-    background-color: #6b6b6b;
-}
-
-button#CreateScheduleButton:enabled:active,
-button#DeleteScheduleButton:enabled:active {
-    background-color: #2b2b2b;
-}
-
 
 div.shortDayToggle {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-areas:
-        "Normal Shortday";
+    grid-template-areas: "Normal Shortday";
 }
 
 button#setNormalDay {
     grid-area: Normal;
-
     border-right: none;
     border-radius: 6px 0 0 6px;
+}
+
+button#setShortDay {
+    grid-area: Shortday;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+}
+
+button.Editor-SDT-Button {
+    border: 2px solid #6b6b6b;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 button.Editor-SDT-Selected {
@@ -539,22 +609,7 @@ button.Editor-SDT-NotSelected:active {
     color: #7b7b7b;
 }
 
-button#setShortDay {
-    grid-area: Shortday;
-
-    border-left: none;
-    border-radius: 0 6px 6px 0;
-}
-
-Button.Editor-SDT-Button {
-    border: 2px solid #6b6b6b;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1em;
-
-    transition: background-color 0.15s ease, color 0.15s ease;
-}
-
+/* Legacy table styles kept as-is */
 table#BellTimesTable {
     width: 100%;
     border-collapse: collapse;

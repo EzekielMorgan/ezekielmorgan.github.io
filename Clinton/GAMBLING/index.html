@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title id="PageTitle">ezekielmorgan.github.io/CHS</title>
-    <meta name="description" content="Yes.">
-    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1">
-    <link rel="stylesheet" href="../../index.css">
-    <link rel="stylesheet" href="../index.css">
-    <link id="GlobalTheme" rel="stylesheet" href="../../Themes/Global/dark.css">
-    <link id="CHSTheme" rel="stylesheet" href="../../Themes/CHS/dark.css">
-    <link rel="icon" href="../../Images/CHS/Logo.png" type="image/png">
-    <script src="index.js" async defer></script>
+  <meta charset="UTF-8">
+
+  <title>GAMBLING</title>
+
+  <!-- Base page stylesheet -->
+  <link rel="stylesheet" href="./index.css">
+
+  <!-- Metadata -->
+  <meta id="footerData" data-version="1" data-madeby="1" data-wip="1">
 
   <!-- Global loader: site css, theme, footer system -->
-  <meta id="footerData" data-version="1" data-madeby="1">
   <script>
     (function () {
       const head = document.head;
@@ -72,26 +69,30 @@
       }
     })();
   </script>
+
+  <!-- Page script -->
+
+  <script type="module" src="./index.js"></script>
 </head>
 
-<body style="margin: 0px;">
-    <section id="TopBar" class="TopBar">
-        <a style="text-decoration: none;" href="index.html"><img src="../../Images/CHS/Logo.png" id="TopBarLogo"
-                class="TopBarLogo"></a>
-        <a style="text-decoration: none;" id="TopBarTitle" class="TopBarTitle" href="index.html">
-            CHS
-        </a>
+<body>
+  <input type="button" id="NewMugShotButton" value="LET'S GO GAMBLING!!!"><br />
+  <br />
+  <section id="AutoGambleSettings">
+    <section id="AGS_Auto">
+      Auto Gamble: <input type="checkbox" id="MugshotAutoChangeCheckbox">
     </section>
-    <section id="MainViewport" class="CHSViewport">
-        <header>
-            Here you will find anything I have done in either of the graphics classes.
-        </header>
+    <section id="AGS_Stop">
+      Stop when: <input type="text" id="stopWhen">
+    </section>
+  </section>
 
-        <a href="./Graphics_1/">Graphics 1</a>
-    </section>
-    <section id="footer">
-        ${Version}
-    </section>
+  <section id="possibleImagesAdornee">
+    <a id="possibleImages"></a>
+  </section>
+  <img class="mugShot" id="mugshot" src="../../Images/Mugshots/GAMBLING.jpeg">
+  <script src="./Mugshots.js">
+  </script>
 </body>
 
 </html>

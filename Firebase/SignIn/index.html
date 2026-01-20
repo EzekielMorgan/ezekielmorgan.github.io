@@ -7,7 +7,67 @@
     <link id="SiteStructureTheme" rel="stylesheet" href="../../index.css">
 
     <div id="Scripts">
-        <!--<script type="module" src="../../Scripts/Global.js"></script>-->
+        <!--
+-->
+  <!-- Global loader: site css, theme, footer system -->
+  <meta id="footerData" data-version="1" data-madeby="1">
+  <script>
+    (function () {
+      const head = document.head;
+      const rootUrl = `${window.location.origin}/`;
+
+      // ---- Ensure site-wide CSS (/index.css) is loaded ----
+      const hasRootIndexCss = Array.from(head.querySelectorAll('link[rel="stylesheet"]'))
+        .some(l => {
+          try { return new URL(l.href, document.baseURI).pathname === '/index.css'; }
+          catch { return false; }
+        });
+
+      if (!hasRootIndexCss) {
+        const siteCss = document.createElement('link');
+        siteCss.id = 'SiteCss';
+        siteCss.rel = 'stylesheet';
+        siteCss.href = `${rootUrl}index.css`;
+
+        const firstStylesheet = head.querySelector('link[rel="stylesheet"]');
+        if (firstStylesheet) head.insertBefore(siteCss, firstStylesheet);
+        else head.append(siteCss);
+      }
+
+      // ---- Ensure global theme CSS is loaded (id=GlobalTheme) ----
+      if (!document.getElementById('GlobalTheme')) {
+        const globalTheme = document.createElement('link');
+        globalTheme.id = 'GlobalTheme';
+        globalTheme.rel = 'stylesheet';
+        globalTheme.href = `${rootUrl}Themes/Global/dark.css`;
+
+        // Place it after /index.css, before any page-local css when possible
+        const firstStylesheet = head.querySelector('link[rel="stylesheet"]');
+        if (firstStylesheet) head.insertBefore(globalTheme, firstStylesheet.nextSibling);
+        else head.append(globalTheme);
+      }
+
+      // ---- Ensure dev menu script is loaded (optional) ----
+      if (!head.querySelector('script[data-devmenu="1"]')) {
+        const devMenu = document.createElement('script');
+        devMenu.src = `${rootUrl}Scripts/devMenu.js`;
+        devMenu.async = true;
+        devMenu.dataset.devmenu = '1';
+        head.append(devMenu);
+      }
+
+      // ---- Ensure Global.js is loaded with footer enabled ----
+      if (!document.getElementById('Global')) {
+        const globalScript = document.createElement('script');
+        globalScript.src = `${rootUrl}Scripts/Global.js`;
+        globalScript.defer = true;
+        globalScript.id = 'Global';
+        globalScript.dataset.globals = JSON.stringify(['footer', 'sonar']);
+        head.append(globalScript);
+      }
+    })();
+  </script>
+
         <script type="module" src="./index.js"></script>
     </div>
 </head>
@@ -23,8 +83,6 @@
         </div>
         <div id="errorMessage"></div>
     </div>
-
-    <script src="../../Scripts/devMenu.js"></script>
 </body>
 
 </html>

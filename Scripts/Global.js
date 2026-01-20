@@ -52,11 +52,16 @@ const Globals = {
     Footer
     */
     ['footer']: () => {
-        const footerElement = `<section id="footer">Footer loading...</section>`
+        // Prefer an existing footer element if the page already has one.
+        // This avoids duplicate footers on older pages.
+        let footer = document.getElementById("footer")
 
-        document.body.insertAdjacentHTML("beforeend", footerElement)
+        if (!footer) {
+            const footerElement = `<section id="footer">Footer loading...</section>`
+            document.body.insertAdjacentHTML("beforeend", footerElement)
+            footer = document.getElementById("footer")
+        }
 
-        const footer = document.getElementById("footer")
         if (!footer) {
             throw new Error("Page is missing the \"footer\"")
         }
@@ -68,7 +73,7 @@ const Globals = {
         if (!footerData) {
             msg = "Version: ${VERSION} | Developed by Ezekiel Morgan"
         } else {
-            Msgs = []
+            let Msgs = []
             Object.entries(FooterMsgs).forEach(([key, value]) => {
                 if (footerData.dataset[key] == "1") {
                     Msgs.push(value.Msg)
@@ -128,7 +133,8 @@ const Globals = {
         )
         ImageElemet.id = "SONARPING"
         ImageElemet.style = "position: fixed; width: 100%; height: 100%; z-index: 99999999; top: 0px; left: 0px; display: none;"
-        ImageElemet.src = "https://ezekielmorgan.github.io/Images/Misc/SONAR%20PING.jpg"
+        // Root-relative path so it works both locally and on GitHub Pages.
+        ImageElemet.src = "/Images/Misc/SONAR%20PING.jpg"
         document.body.appendChild(ImageElemet)
 
         let current = ""
